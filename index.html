@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SVG Editor</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/viewer.css">
+        <link rel="stylesheet" href="css/editor.css">
+        <script type="module" src="js/app.js"></script>
+    </head>
+    <body>
+        <div id="viewport">
+            <svg id="drawing" width="5000" height="5000">
+                <circle cx="50" cy="50" r="45" stroke="black" stroke-width="5" fill="red" />
+                <circle cx="600" cy="600" r="100" stroke="black" stroke-width="5" fill="red" />
+                <circle cx="1200" cy="700" r="150" stroke="black" stroke-width="5" fill="red" />
+                <circle cx="4950" cy="4950" r="45" stroke="black" stroke-width="5" fill="red" />
+            </svg>
+            <div id="viewControls">
+                <button id="centerBtn">
+                    <svg width="60" height="60">
+                        <circle cx="30" cy="30" r="30" stroke="#00f0f2" stroke-width="1" fill="#e0f0f2" />
+                    </svg>
+                </button>
+                <button id="upBtn">
+                    <svg width="16" height="16">
+                        <polygon points="8,0 16,16 0,16" style="fill:#00f0f2;stroke:purple;stroke-width:1" />
+                    </svg>
+                </button>
+                <button id="downBtn">
+                    <svg width="16" height="16">
+                        <polygon points="0,0 16,0 8,16" style="fill:#00f0f2;stroke:purple;stroke-width:1" />
+                    </svg>
+                </button>
+                <button id="leftBtn">
+                    <svg width="16" height="16">
+                        <polygon points="0,8 16,0 16,16" style="fill:#00f0f2;stroke:purple;stroke-width:1" />
+                    </svg>
+                </button>
+                <button id="rightBtn">
+                    <svg width="16" height="16">
+                        <polygon points="0,0 16,8 0,16" style="fill:#00f0f2;stroke:purple;stroke-width:1" />
+                    </svg>
+                </button>
+                <button id="zoomOutBtn" class="zoom-button">-</button>
+                <button id="zoomInBtn" class="zoom-button">+</button>
+            </div>
+            <div id="miniMap">
+                <div class="visible-area"></div>    
+            </div>
+        </div>
+    </body>
+</html>

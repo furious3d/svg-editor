@@ -1,0 +1,12 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+#viewport {
+    width: 95%;
+    height: 600px;
+    margin: 20px auto;
+    border: solid 1px #555555;
+    background-color: #f0faf5;
+}

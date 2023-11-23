@@ -1,0 +1,81 @@
+#viewport {
+    position: relative;
+    overflow: hidden;
+}
+#viewport > svg {
+    position: absolute;
+}
+
+#viewControls {
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    width: 114px;
+    height: 150px;
+    bottom: 5pt;
+    left: 5pt;
+    z-index: 100;
+}
+#viewControls > button {
+    position: absolute;
+    background-color: #f0f0f0;
+    border: solid 1px #c0c0c0;
+    padding: 2px;
+}
+#viewControls > button:hover {
+    border-color: #00a0a5;
+}
+#centerBtn {
+    background-color: transparent !important;
+    border: none !important;
+    top: 28px;
+    left: 25px;
+}
+#upBtn {
+    top: 5px;
+    left: 48px;
+}
+#downBtn {
+    top: 92px;
+    left: 48px;
+}
+#leftBtn {
+    top: 48px;
+    left: 5px;
+}
+#rightBtn {
+    top: 48px;
+    right: 5px;
+}
+#viewControls .zoom-button {
+    bottom: 2px;
+    width: 30px;
+    height: 20px;
+    color: #00f0f2;
+}
+#zoomOutBtn {
+    left: 5px;
+}
+#zoomInBtn {
+    right: 5px;
+}
+
+#miniMap {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    bottom: 5pt;
+    right: 5pt;
+    z-index: 100;
+    background-color: #e0e0e0;
+    border: solid 2px #d0d0d0;
+}
+#miniMap .visible-area {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    top: 50%;
+    left: 50%;
+    z-index: 200;
+    background-color: rgba(200, 50, 50, 0.2);
+    border: solid 1px #aa5555;
+}
