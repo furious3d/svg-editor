@@ -9,7 +9,7 @@ export class SVGViewer {
         this.maxZoomLevel = 2.0;
         this.isViewMoving = false;
         this.animationInterval = null;
-        this.animationIntervalTime = 50;
+        this.animationIntervalTime = 30;
         this.calculateViewAreaRatioValues();
         this.initViewControls();
     }
