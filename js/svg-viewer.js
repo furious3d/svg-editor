@@ -29,7 +29,6 @@ export class SVGViewer {
         this.view = viewContainer;
         this.area = this.view.querySelector("#drawing");
         this.viewPosition = [0, 0];
-        this.moveVector = [0, 0];
         this.zoomLevel = 1;
         this.minZoomLevel = 0.1;
         this.maxZoomLevel = 2.0;
@@ -119,10 +118,8 @@ export class SVGViewer {
     calculateViewAreaRatioValues() {
         this.areaWidth = this.area.width.baseVal.value * this.zoomLevel;
         this.areaHeight = this.area.height.baseVal.value * this.zoomLevel;
-        this.maxViewOffsetX = this.areaWidth - this.view.clentWidth;
+        this.maxViewOffsetX = this.areaWidth - this.view.clientWidth;
         this.maxViewOffsetY = this.areaHeight - this.view.clientHeight;
-        console.log("Zoom: " + this.zoomLevel);
-        console.log("areaWidth: " + this.areaWidth);
     }
 
     updateView() {
@@ -139,7 +136,6 @@ export class SVGViewer {
         switch (evt.type) {
             case "mousedown":
                 if (this.isViewMoving) return;
-                this.moveVector = [x, y];
                 this.isViewMoving = true;
                 this.startAnimationLoop();
                 break;
@@ -149,8 +145,7 @@ export class SVGViewer {
                 break;
             case "mousemove":
                 if (!this.isViewMoving) return;
-                this.move([this.moveVector[0] - x, this.moveVector[1] - y]);
-                this.moveVector = [x, y];
+                this.move([-evt.movementX, -evt.movementY]);
                 break;
         }
     }
