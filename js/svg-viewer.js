@@ -1,3 +1,29 @@
+class MiniMap {
+    constructor(area, view) {
+        this.areaFrame = view.querySelector("#miniMap");
+        this.viewFrame = this.areaFrame.querySelector("div");
+        this.viewWidth = view.clientWidth;
+        this.viewHeight = view.clientHeight;
+        this.areaBaseWidth = area.width.baseVal.value;
+        this.areaBaseHeight = area.height.baseVal.value;
+    }
+
+    update(zoom, position) {
+        const areaWidth = this.areaBaseWidth * zoom;
+        const areaHeight = this.areaBaseHeight * zoom;
+        const areaRatio = areaWidth / areaHeight;
+        const relativeWidth = this.viewWidth / areaWidth * 100;
+        const relativeHeight = this.viewHeight / areaHeight * 100;
+        const scale = this.areaFrame.clientWidth / this.areaBaseWidth;
+
+        this.areaFrame.style.height = Math.round(this.areaFrame.clientWidth * areaRatio) + "px";
+        this.viewFrame.style.width = relativeWidth + "%";
+        this.viewFrame.style.height = relativeHeight + "%";
+        this.viewFrame.style.top = Math.round(position[1] * scale) + "px";
+        this.viewFrame.style.left = Math.round(position[0] * scale) + "px";
+    }
+}
+
 export class SVGViewer {
     constructor(viewContainer) {
         this.view = viewContainer;
@@ -12,6 +38,7 @@ export class SVGViewer {
         this.animationIntervalTime = 30;
         this.calculateViewAreaRatioValues();
         this.initViewControls();
+        this.miniMap = new MiniMap(this.area, this.view);
     }
 
     initViewControls() {
@@ -57,8 +84,6 @@ export class SVGViewer {
         });
     }
 
-    initMiniMap() {}
-
     move([x, y], updateView = false) {
         let updatedX = this.viewPosition[0] + x;
         let updatedY = this.viewPosition[1] + y;
@@ -94,14 +119,17 @@ export class SVGViewer {
     calculateViewAreaRatioValues() {
         this.areaWidth = this.area.width.baseVal.value * this.zoomLevel;
         this.areaHeight = this.area.height.baseVal.value * this.zoomLevel;
-        this.maxViewOffsetX = this.areaWidth - this.view.offsetWidth;
-        this.maxViewOffsetY = this.areaHeight - this.view.offsetHeight;
+        this.maxViewOffsetX = this.areaWidth - this.view.clentWidth;
+        this.maxViewOffsetY = this.areaHeight - this.view.clientHeight;
+        console.log("Zoom: " + this.zoomLevel);
+        console.log("areaWidth: " + this.areaWidth);
     }
 
     updateView() {
         this.area.style.left = -this.viewPosition[0] + "px";
         this.area.style.top = -this.viewPosition[1] + "px";
-        this.area.currentScale = this.zoomLevel;
+        this.area.style.transform = "scale(" + this.zoomLevel + ")";
+        this.miniMap.update(this.zoomLevel, this.viewPosition);
     }
 
     onAreaMouseEvent(evt) {
