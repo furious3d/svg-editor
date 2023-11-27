@@ -38,6 +38,7 @@ export class SVGViewer {
         this.calculateViewAreaRatioValues();
         this.initViewControls();
         this.miniMap = new MiniMap(this.area, this.view);
+        this.miniMap.update(this.zoomLevel, this.viewPosition);
     }
 
     initViewControls() {
